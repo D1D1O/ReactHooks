@@ -9,11 +9,19 @@ function calcFatorial(num){
     if(n===0) return 1
     return calcFatorial(n-1) * n
 }
+//const isPar = props.numero % 2 === 0;
+function isPar(num){
+    const n = parseInt(num)
+    return n % 2 === 0 ? 'PAR' : 'IMPAR' ;
+}
 
 const UseEffect = (props) => {
 
 const [number,setNumber] = useState(1);
 const [fatorial,setFatorial] = useState(1);
+
+const [valor,setValor] = useState(0) 
+const [tipo,setTipo] = useState('')
 
 useEffect(() => {
     setFatorial(calcFatorial(number))
@@ -27,6 +35,12 @@ useEffect(()=>{
     }
 
 },[fatorial])
+
+
+useEffect(()=>{
+    setTipo(isPar(valor))
+
+},[valor])
 
 
     return (
@@ -57,7 +71,20 @@ useEffect(()=>{
                 title="Exercício #02"
             />
             <div className="center">
-                
+
+                <div>
+                    <span className="text">Impar/par: </span>
+                    <span className="text red"> {tipo} </span>
+                </div>
+                <input type="number" className="input"
+                    value={valor}
+                    onChange={
+                        (e)=>{
+                            setValor(e.target.value)
+                        }
+                    }
+                />
+
             </div>
 
         </div>
