@@ -7,9 +7,9 @@ import SectionTitle from '../../components/layout/SectionTitle'
 const merge = (s1, s2) =>{
     let valorFinal = ''
     const vl = s1 + s2;
-    console.log(vl)
+    //console.log(vl)
     const tamanho = vl.length
-    console.log(tamanho)
+    //console.log(tamanho)
     let id = 0;
 
     while (tamanho > id){
