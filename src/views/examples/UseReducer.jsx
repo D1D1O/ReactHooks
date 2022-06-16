@@ -2,7 +2,7 @@ import React,{useReducer} from 'react'
 import PageTitle from '../../components/layout/PageTitle'
 import SectionTitle from '../../components/layout/SectionTitle'
 
-
+ // n x 7  -- div 25  -- parceint -- add numero N 
 
 const initialState = {
     cart:[],
@@ -18,6 +18,14 @@ function reducer(state,action){
                 return {...state,number:state.number +2}
         case 'login':
                 return {...state, user:{name:action.payLoad}}
+        case 'numberX7':
+            return {...state, number: state.number > 0 ? state.number * 7 : 0}
+        case 'numberDiv25':
+            return {...state, number:state.number / 25}
+        case 'numberParceInt':
+            return {...state, number:parseInt(state.number)}
+        case 'numberAddN':
+            return {...state, number:action.payLoad}
         default:
             return state
     }
@@ -34,7 +42,7 @@ const UseReducer = (props) => {
                 title="Hook UseReducer"
                 subtitle="Uma outra forma de ter estado em componentes funcionais!"
             />
-             <SectionTitle
+            <SectionTitle
                 title="Exercício #01"
             />
             <div className="center">
@@ -46,8 +54,6 @@ const UseReducer = (props) => {
                     <span className="text">
                         Sem Usuário
                     </span>
-
-
                 }
                 
                 <span className="text">
@@ -65,6 +71,36 @@ const UseReducer = (props) => {
                     </button>
                 </div>
             </div>
+            <SectionTitle
+                title="Desafio useReducer #01"
+            />
+            <div className="center">
+                <div style={
+                    {marginTop: 40}
+                }>
+                    <button 
+                        className="btn"
+                        onClick={()=>dispatch({type:'numberX7'}) }
+                    >N x 7</button>
+                    <button 
+                        className="btn"
+                        onClick={()=>dispatch({type:'numberDiv25'}) }
+                    >N / 25 </button>
+                    <button 
+                        className="btn"
+                        onClick={()=>dispatch({type:'numberParceInt'}) }
+                    > ParceInt(N) </button>
+
+
+                    <button 
+                        className="btn"
+                        onClick={()=>dispatch({type:'numberAddN',payLoad:10}) }
+                    > Set N </button>
+
+                </div>
+            </div>
+
+
         </div>
     )
 }
